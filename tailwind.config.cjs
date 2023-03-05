@@ -16,6 +16,17 @@ module.exports = {
             fontFamily: {
                 poppins: ["Poppins", "monospace"],
             },
+            keyframes: {
+                wheel: {
+                    to: {
+                        opacity: 0,
+                        top: "2.5rem",
+                    },
+                },
+            },
+            animation: {
+                wheel: "wheel 1.75s ease-out infinite",
+            },
         },
     },
     plugins: [],

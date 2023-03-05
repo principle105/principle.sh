@@ -1,9 +1,30 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+    import gsap from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+
     import WavingHand from "./assets/wavingHand.svelte";
-    import wavingHand from "./assets/wavingHand.svelte";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    onMount(() => {
+        gsap.to("#mouse", {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#mouse",
+                start: "top bottom-=100",
+                end: "bottom bottom-=100",
+                scrub: true,
+            },
+        });
+    });
 </script>
 
 <main class="w-screen h-screen flex">
+    <div
+        class="w-10 h-16 border-[3px] border-zinc-400 rounded-3xl fixed z-20 bottom-3.5 left-1/2 before:w-3 before:h-3 before:absolute before:top-2 before:left-1/2 before:-translate-x-1/2 before:bg-zinc-100 before:rounded-full before:animate-wheel"
+        id="mouse"
+    />
     <div class="m-auto">
         <div class="flex items-end gap-6">
             <h1 class="text-white text-8xl font-semibold">Hello!</h1>
@@ -23,7 +44,7 @@
                 href="https://github.com/principle105"
                 target="_blank"
                 rel="noreferrer"
-                class="text-white rounded-xl text-[1.075rem] px-9 py-3.5 bg-highlight_light hover:brightness-125 transition"
+                class="text-bg rounded-xl text-[1.075rem] px-9 py-3.5 bg-purple font-medium hover:brightness-90 transition"
             >
                 Github
             </a>
