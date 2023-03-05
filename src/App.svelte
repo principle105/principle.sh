@@ -23,7 +23,7 @@
                 href="https://github.com/principle105"
                 target="_blank"
                 rel="noreferrer"
-                class="text-white rounded-xl text-[1.075rem] font-medium px-9 py-3.5 bg-highlight_light hover:brightness-125 transition"
+                class="text-white rounded-xl text-[1.075rem] px-9 py-3.5 bg-highlight_light hover:brightness-125 transition"
             >
                 Github
             </a>
