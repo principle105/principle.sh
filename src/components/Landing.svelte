@@ -1,5 +1,5 @@
 <script lang="ts">
-    import WavingHand from "../icons/WavingHand.svelte";
+    import WavingHand from "$assets/WavingHand.svelte";
 </script>
 
 <div class="m-auto">

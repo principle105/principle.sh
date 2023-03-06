@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import gsap from "gsap";
     import ScrollTrigger from "gsap/ScrollTrigger";
-    import Landing from "./components/Landing.svelte";
+    import Landing from "$components/Landing.svelte";
 
     gsap.registerPlugin(ScrollTrigger);
 
