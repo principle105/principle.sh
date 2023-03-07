@@ -6,7 +6,8 @@ module.exports = {
             colors: {
                 main: "#23252f",
                 main_light: "#292a35",
-
+                border_main: "#202129",
+                highlight: "#323644",
                 purple: "#bd93f9",
                 cyan: "#8be9fd",
                 green: "#50fa7b",
@@ -14,6 +15,9 @@ module.exports = {
             },
             fontFamily: {
                 poppins: ["Poppins", "monospace"],
+            },
+            transformOrigin: {
+                test: "100% calc(100% - 9.5rem)",
             },
             keyframes: {
                 wheel: {
