@@ -6,12 +6,19 @@
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
 
     let aspectRatio = "16.1 / 8.9";
+    let scale = 1.225;
 
     function setAspectRatio() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        console.log(width / height);
         aspectRatio = `${width} / ${height}`;
+
+        const content = document.getElementById("content");
+
+        scale = Math.sqrt(
+            (window.innerWidth * window.innerHeight) /
+                (content.offsetWidth * content.offsetHeight)
+        );
     }
 
     gsap.registerPlugin(ScrollTrigger);
@@ -31,8 +38,8 @@
             },
         });
 
-        gsap.from("#content", {
-            scale: 1.225,
+        gsap.from("#editor", {
+            scale: scale,
             scrollTrigger: {
                 trigger: "#window",
                 pin: "#window",
@@ -51,7 +58,7 @@
         class="w-10 h-16 border-[3px] border-zinc-400 rounded-3xl fixed z-20 bottom-3.5 left-1/2 before:w-3 before:h-3 before:absolute before:top-2 before:left-1/2 before:-translate-x-1/2 before:bg-zinc-100 before:rounded-full before:animate-wheel"
         id="mouse"
     />
-    <div class="h-full w-full flex-col flex origin-test" id="content">
+    <div class="h-full w-full flex-col flex origin-test" id="editor">
         <div
             class="w-full py-2 h-10 flex items-center border-b-2 border-border_main"
         >
@@ -105,6 +112,7 @@
                 <div
                     class="bg-main_light flex"
                     style="aspect-ratio: {aspectRatio}"
+                    id="content"
                 >
                     <Landing />
                 </div>
