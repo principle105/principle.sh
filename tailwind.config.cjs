@@ -8,6 +8,7 @@ module.exports = {
                 main_light: "#292a35",
                 border_main: "#202129",
                 highlight: "#323644",
+                comment: "#6572a0",
                 purple: "#bd93f9",
                 cyan: "#8be9fd",
                 green: "#50fa7b",
@@ -17,7 +18,7 @@ module.exports = {
                 poppins: ["Poppins", "monospace"],
             },
             transformOrigin: {
-                test: "100% calc(100% - 9.5rem)",
+                test: "100% calc(100% - 10rem)",
             },
             keyframes: {
                 wheel: {

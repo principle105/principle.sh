@@ -3,6 +3,7 @@
     import gsap from "gsap";
     import ScrollTrigger from "gsap/ScrollTrigger";
     import Landing from "$components/Landing.svelte";
+    import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
 
     let aspectRatio = "16.1 / 8.9";
 
@@ -66,21 +67,24 @@
         <div class="flex grow overflow-hidden">
             <div class="w-16 border-r-2 border-border_main hidden md:block" />
             <div class="min-w-max border-r-2 border-border_main">
-                <div class="w-full h-16">
-                    <div class="p-3">
-                        <h4 class="uppercase text-white text-sm">EXPLORER</h4>
-                        <h4 class="uppercase text-white text-sm font-semibold">
-                            Open Editors
-                        </h4>
-                    </div>
+                <div class="w-full h-12 py-3 flex pl-6">
+                    <h4 class="uppercase text-xs text-zinc-300">EXPLORER</h4>
                 </div>
-                <div class="w-full h-7 border-b-2 border-border_main">
-                    <h4
-                        class="uppercase text-white text-sm pl-3 pr-16 py-1 font-semibold"
-                    >
-                        Principle@dev
+                <div
+                    class="pl-3 pr-16 gap-1.5 w-full h-7 border-b-2 border-border_main flex text-white items-center"
+                >
+                    <div class="h-4">
+                        <FaAngleRight />
+                    </div>
+                    <h4 class="uppercase text-xs font-semibold">
+                        Open Editors
                     </h4>
                 </div>
+                <h4
+                    class="uppercase text-white text-xs font-semibold mt-3 ml-3"
+                >
+                    Principle@dev
+                </h4>
                 <div class="text-white text-sm mt-3">
                     <h5 class="bg-highlight pl-6 py-1">about</h5>
                     <h5 class="pl-6 py-1">contact</h5>
@@ -88,8 +92,16 @@
                 </div>
             </div>
             <div class="grow">
-                <div class="h-16 border-b-2 border-border_main w-full" />
-                <div class="h-7" />
+                <div class="h-12 border-b-2 border-border_main w-full" />
+                <div
+                    class="h-7 text-comment text-sm flex items-center gap-2 ml-3"
+                >
+                    <span>projects</span>
+                    <div class="h-4">
+                        <FaAngleRight />
+                    </div>
+                    <span>about.md</span>
+                </div>
                 <div
                     class="bg-main_light flex"
                     style="aspect-ratio: {aspectRatio}"
