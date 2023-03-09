@@ -4,9 +4,10 @@
     import ScrollTrigger from "gsap/ScrollTrigger";
     import Landing from "$components/Landing.svelte";
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
+    import FaAngleDown from "svelte-icons/fa/FaAngleDown.svelte";
 
-    let aspectRatio = "16.1 / 8.9";
-    let scale = 1.225;
+    let aspectRatio: string = "16.1 / 8.9";
+    let scale: number;
 
     function setAspectRatio() {
         const width = window.innerWidth;
@@ -15,10 +16,7 @@
 
         const content = document.getElementById("content");
 
-        scale = Math.sqrt(
-            (window.innerWidth * window.innerHeight) /
-                (content.offsetWidth * content.offsetHeight)
-        );
+        scale = window.innerWidth / content.offsetWidth;
     }
 
     gsap.registerPlugin(ScrollTrigger);
@@ -39,7 +37,7 @@
         });
 
         gsap.from("#editor", {
-            scale: scale,
+            scale,
             scrollTrigger: {
                 trigger: "#window",
                 pin: "#window",
@@ -58,23 +56,25 @@
         class="w-10 h-16 border-[3px] border-zinc-400 rounded-3xl fixed z-20 bottom-3.5 left-1/2 before:w-3 before:h-3 before:absolute before:top-2 before:left-1/2 before:-translate-x-1/2 before:bg-zinc-100 before:rounded-full before:animate-wheel"
         id="mouse"
     />
-    <div class="h-full w-full flex-col flex origin-test" id="editor">
+    <div class="flex-col flex origin-test" id="editor">
         <div
-            class="w-full py-2 h-10 flex items-center border-b-2 border-border_main"
+            class="w-full py-2 flex items-center border-b-2 border-border_main"
         >
-            <div class="flex gap-1.5 ml-3">
-                <div class="h-3.5 w-3.5 rounded-full bg-[#ed6a5e]" />
-                <div class="h-3.5 w-3.5 rounded-full bg-[#f5be4f]" />
-                <div class="h-3.5 w-3.5 rounded-full bg-[#61c554]" />
+            <div class="flex gap-1.5 ml-2">
+                <div class="h-3 w-3 rounded-full bg-[#ed6a5e]" />
+                <div class="h-3 w-3 rounded-full bg-[#f5be4f]" />
+                <div class="h-3 w-3 rounded-full bg-[#61c554]" />
             </div>
-            <h2 class="text-white text-sm text-center w-full">
+            <h2 class="text-white text-xs text-center w-full">
                 about.md - Principle@dev
             </h2>
         </div>
         <div class="flex grow overflow-hidden">
-            <div class="w-16 border-r-2 border-border_main hidden md:block" />
+            <div
+                class="w-[3.75rem] border-r-2 border-border_main hidden xl:block"
+            />
             <div class="min-w-max border-r-2 border-border_main">
-                <div class="w-full h-12 py-3 flex pl-6">
+                <div class="w-full py-3 flex pl-6">
                     <h4 class="uppercase text-xs text-zinc-300">EXPLORER</h4>
                 </div>
                 <div
@@ -88,9 +88,12 @@
                     </h4>
                 </div>
                 <h4
-                    class="uppercase text-white text-xs font-semibold mt-3 ml-3"
+                    class="uppercase text-white text-xs font-semibold mt-3 ml-3 flex items-center gap-1.5"
                 >
-                    Principle@dev
+                    <div class="h-4">
+                        <FaAngleDown />
+                    </div>
+                    <span>Principle@dev</span>
                 </h4>
                 <div class="text-white text-sm mt-3">
                     <h5 class="bg-highlight pl-6 py-1">about</h5>
@@ -99,9 +102,9 @@
                 </div>
             </div>
             <div class="grow">
-                <div class="h-12 border-b-2 border-border_main w-full" />
+                <div class="h-11 border-b-2 border-border_main w-full" />
                 <div
-                    class="h-7 text-comment text-sm flex items-center gap-2 ml-3"
+                    class="text-comment text-xs flex items-center gap-2 pl-3 py-1 bg-main_light"
                 >
                     <span>projects</span>
                     <div class="h-4">
@@ -118,8 +121,8 @@
                 </div>
             </div>
         </div>
-        <footer class="border-t-2 border-border_main w-full h-8">
-            <p>footer</p>
+        <footer class="border-t-2 border-border_main w-full">
+            <span class="text-purple opacity-50 text-sm">footer</span>
         </footer>
     </div>
 </main>

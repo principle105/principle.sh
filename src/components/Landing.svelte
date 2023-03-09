@@ -21,7 +21,7 @@
             href="https://github.com/principle105"
             target="_blank"
             rel="noreferrer"
-            class="text-main rounded-lg text-sm px-7 py-2.5 bg-purple font-medium hover:brightness-[85%] transition"
+            class="text-main rounded-lg text-sm px-8 py-3 bg-purple font-medium hover:brightness-[85%] transition"
         >
             Github
         </a>

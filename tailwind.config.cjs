@@ -18,7 +18,7 @@ module.exports = {
                 poppins: ["Poppins", "monospace"],
             },
             transformOrigin: {
-                test: "100% calc(100% - 14rem)",
+                test: "100% calc(100% - 10rem)",
             },
             keyframes: {
                 wheel: {
