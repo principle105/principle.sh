@@ -5,10 +5,12 @@
     import Landing from "$components/Landing.svelte";
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
     import FaAngleDown from "svelte-icons/fa/FaAngleDown.svelte";
+    import FaTimes from "svelte-icons/fa/FaTimes.svelte";
     import type { ComponentType } from "svelte/internal";
 
     interface Folder {
         folderName: string;
+        route: string;
         files: Route[];
     }
 
@@ -26,7 +28,23 @@
             route: "/about",
             component: Landing,
         },
+        {
+            fileName: "contact.md",
+            route: "/contact",
+            component: Landing,
+        },
+        {
+            fileName: ".md",
+            route: "/contact",
+            component: Landing,
+        },
+        {
+            folderName: "projects",
+            route: "/projects",
+            files: [],
+        },
     ];
+    let currentPage: Route = routes[0] as Route;
 
     const setAspectRatio = () => {
         const width = window.innerWidth;
@@ -49,20 +67,21 @@
             opacity: 0,
             scrollTrigger: {
                 trigger: "#mouse",
-                start: "top bottom-=100",
-                end: "bottom bottom-=100",
+                start: "top bottom",
+                end: "bottom bottom",
                 scrub: true,
             },
         });
 
-        gsap.from("#editor", {
-            scale,
-            scrollTrigger: {
-                trigger: "#window",
-                pin: "#window",
-                scrub: true,
-            },
-        });
+        // gsap.from("#editor", {
+        //     scale,
+        //     scrollTrigger: {
+        //         trigger: "#window",
+        //         pin: "#window",
+        //         scrub: true,
+        //         markers: true,
+        //     },
+        // });
     });
 
     onDestroy(() => {
@@ -90,7 +109,7 @@
         </div>
         <div class="grow overflow-hidden flex">
             <div
-                class="w-[3.75rem] border-r-2 border-border_main hidden xl:block"
+                class="w-[3.15rem] border-r-2 border-border_main hidden xl:block"
             />
             <div class="min-w-max border-r-2 border-border_main">
                 <div class="w-full py-3 flex pl-6">
@@ -121,7 +140,20 @@
                 </div>
             </div>
             <div class="grow">
-                <div class="h-11 border-b-2 border-border_main w-full" />
+                <div class="h-11 w-full flex">
+                    <div
+                        class="h-full bg-main_light w-max text-cyan flex items-center px-3 py-1 relative gap-3 border-border_main border-r-2"
+                    >
+                        <div
+                            class="absolute top-0 left-0 h-0.5 w-full bg-cyan"
+                        />
+                        <span>{currentPage.fileName}</span>
+                        <div class="h-4 text-white">
+                            <FaTimes />
+                        </div>
+                    </div>
+                    <div class="border-b-2 border-border_main grow" />
+                </div>
                 <div
                     class="text-comment text-xs flex items-center gap-2 pl-3 py-1 bg-main_light"
                 >
