@@ -5,11 +5,30 @@
     import Landing from "$components/Landing.svelte";
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
     import FaAngleDown from "svelte-icons/fa/FaAngleDown.svelte";
+    import type { ComponentType } from "svelte/internal";
+
+    interface Folder {
+        folderName: string;
+        files: Route[];
+    }
+
+    interface Route {
+        fileName: string;
+        route: string;
+        component: ComponentType;
+    }
 
     let aspectRatio: string = "16.1 / 8.9";
     let scale: number;
+    let routes: (Folder | Route)[] = [
+        {
+            fileName: "about.md",
+            route: "/about",
+            component: Landing,
+        },
+    ];
 
-    function setAspectRatio() {
+    const setAspectRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         aspectRatio = `${width} / ${height}`;
@@ -17,7 +36,7 @@
         const content = document.getElementById("content");
 
         scale = window.innerWidth / content.offsetWidth;
-    }
+    };
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -69,7 +88,7 @@
                 about.md - Principle@dev
             </h2>
         </div>
-        <div class="flex grow overflow-hidden">
+        <div class="grow overflow-hidden flex">
             <div
                 class="w-[3.75rem] border-r-2 border-border_main hidden xl:block"
             />
