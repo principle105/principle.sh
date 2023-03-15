@@ -1,11 +1,14 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
+    import Router from "svelte-spa-router";
     import gsap from "gsap";
     import ScrollTrigger from "gsap/ScrollTrigger";
     import Landing from "$components/Landing.svelte";
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
     import FaAngleDown from "svelte-icons/fa/FaAngleDown.svelte";
     import FaTimes from "svelte-icons/fa/FaTimes.svelte";
+    import FaFolder from "svelte-icons/fa/FaFolder.svelte";
+    import FaFile from "svelte-icons/fa/FaFile.svelte";
     import type { ComponentType } from "svelte/internal";
 
     interface Folder {
@@ -17,34 +20,84 @@
     interface Route {
         fileName: string;
         route: string;
+        icon: ComponentType;
         component: ComponentType;
     }
 
-    let aspectRatio: string = "16.1 / 8.9";
+    const isFolder = (route: Folder | Route): route is Folder => {
+        return "folderName" in route;
+    };
+
+    let aspectRatio: string;
     let scale: number;
-    let routes: (Folder | Route)[] = [
+
+    let directory: (Folder | Route)[] = [
+        {
+            folderName: "projects",
+            route: "/projects",
+            files: [
+                {
+                    fileName: "about.md",
+                    route: "/about",
+                    component: Landing,
+                    icon: FaFile,
+                },
+                {
+                    fileName: "contact.md",
+                    route: "/contact",
+                    component: Landing,
+                    icon: FaFile,
+                },
+                {
+                    fileName: "contact.md",
+                    route: "/contact",
+                    component: Landing,
+                    icon: FaFile,
+                },
+            ],
+        },
         {
             fileName: "about.md",
-            route: "/about",
+            route: "/",
             component: Landing,
+            icon: FaFile,
         },
         {
             fileName: "contact.md",
             route: "/contact",
             component: Landing,
+            icon: FaFile,
         },
         {
-            fileName: ".md",
+            fileName: "contact.md",
             route: "/contact",
             component: Landing,
-        },
-        {
-            folderName: "projects",
-            route: "/projects",
-            files: [],
+            icon: FaFile,
         },
     ];
-    let currentPage: Route = routes[0] as Route;
+
+    const getRoutes = () => {
+        let routes = {};
+
+        for (let i = 0; i < directory.length; i++) {
+            let item = directory[i];
+
+            if (isFolder(item)) {
+                for (let j = 0; j < item.files.length; j++) {
+                    let file = item.files[j];
+                    routes[item.route + file.route] = file.component;
+                }
+            } else {
+                routes[item.route] = item.component;
+            }
+        }
+
+        return routes;
+    };
+
+    let routes = getRoutes();
+
+    let currentPage: Route = directory[1] as Route;
 
     const setAspectRatio = () => {
         const width = window.innerWidth;
@@ -73,15 +126,14 @@
             },
         });
 
-        // gsap.from("#editor", {
-        //     scale,
-        //     scrollTrigger: {
-        //         trigger: "#window",
-        //         pin: "#window",
-        //         scrub: true,
-        //         markers: true,
-        //     },
-        // });
+        gsap.from("#editor", {
+            scale,
+            scrollTrigger: {
+                trigger: "#window",
+                pin: "#window",
+                scrub: true,
+            },
+        });
     });
 
     onDestroy(() => {
@@ -134,20 +186,61 @@
                     <span>Principle@dev</span>
                 </h4>
                 <div class="text-white text-sm mt-3">
-                    <h5 class="bg-highlight pl-6 py-1">about</h5>
-                    <h5 class="pl-6 py-1">contact</h5>
-                    <h5 class="pl-6 py-1">projects</h5>
+                    {#each directory as route}
+                        {#if isFolder(route)}
+                            <div class="flex gap-1.5 items-center pl-6 py-1">
+                                <div class="h-4">
+                                    <FaAngleDown />
+                                </div>
+                                <div class="h-4 text-zinc-400">
+                                    <FaFolder />
+                                </div>
+                                <h5>{route.folderName}</h5>
+                            </div>
+                            <div class="pl-6 py-1">
+                                {#each route.files as file}
+                                    <h6
+                                        class="pl-6 py-1 flex gap-1.5 items-center {currentPage.route ===
+                                        file.route
+                                            ? 'bg-highlight'
+                                            : ''}"
+                                    >
+                                        <div class="h-4">
+                                            <svelte:component
+                                                this={file.icon}
+                                            />
+                                        </div>
+                                        {file.fileName}
+                                    </h6>
+                                {/each}
+                            </div>
+                        {:else}
+                            <h5
+                                class="pl-6 py-1 flex gap-1.5 items-center {currentPage.route ===
+                                route.route
+                                    ? 'bg-highlight'
+                                    : ''}"
+                            >
+                                <div class="h-4">
+                                    <svelte:component this={route.icon} />
+                                </div>
+                                {route.fileName}
+                            </h5>
+                        {/if}
+                    {/each}
                 </div>
             </div>
             <div class="grow">
                 <div class="h-11 w-full flex">
                     <div
-                        class="h-full bg-main_light w-max text-cyan flex items-center px-3 py-1 relative gap-3 border-border_main border-r-2"
+                        class="h-full bg-main_light w-max flex items-center px-3 py-1 relative gap-3 border-border_main border-r-2"
                     >
                         <div
                             class="absolute top-0 left-0 h-0.5 w-full bg-cyan"
                         />
-                        <span>{currentPage.fileName}</span>
+                        <span class="text-vs text-cyan">
+                            {currentPage.fileName}
+                        </span>
                         <div class="h-4 text-white">
                             <FaTimes />
                         </div>
@@ -157,18 +250,18 @@
                 <div
                     class="text-comment text-xs flex items-center gap-2 pl-3 py-1 bg-main_light"
                 >
-                    <span>projects</span>
+                    <span>folder</span>
                     <div class="h-4">
                         <FaAngleRight />
                     </div>
-                    <span>about.md</span>
+                    <span>{currentPage.fileName}</span>
                 </div>
                 <div
                     class="bg-main_light flex"
                     style="aspect-ratio: {aspectRatio}"
                     id="content"
                 >
-                    <Landing />
+                    <Router {routes} />
                 </div>
             </div>
         </div>

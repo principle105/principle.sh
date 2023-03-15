@@ -17,6 +17,9 @@ module.exports = {
             fontFamily: {
                 poppins: ["Poppins", "monospace"],
             },
+            fontSize: {
+                vs: "0.825rem",
+            },
             transformOrigin: {
                 test: "100% calc(100% - 10rem)",
             },
