@@ -122,7 +122,7 @@
             <div
                 class="w-[3.15rem] border-r-2 border-border_main hidden xl:block"
             />
-            <div class="min-w-max border-r-2 border-border_main">
+            <div class="min-w-max border-r-2 border-border_main pr-4">
                 <div class="w-full py-3 flex pl-6">
                     <h4 class="uppercase text-xs text-zinc-300">EXPLORER</h4>
                 </div>
@@ -147,7 +147,7 @@
                 <div class="text-white text-sm mt-3">
                     {#each directory as route}
                         {#if isFolder(route)}
-                            <div class="flex items-center pl-6 py-1 gap-1.5">
+                            <div class="flex items-center pl-5 py-1 gap-1.5">
                                 <div class="h-4">
                                     <FaAngleDown />
                                 </div>
@@ -156,10 +156,10 @@
                                 </div>
                                 <h5>{route.name}</h5>
                             </div>
-                            <div class="pl-6 py-1">
+                            <div class="pl-5 py-1">
                                 {#each route.files as file}
                                     <h6
-                                        class="pl-6 py-1 flex items-center gap-1.5 {currentPage.name ===
+                                        class="pl-5 py-1 flex items-center gap-1.5 {currentPage.name ===
                                         file.name
                                             ? 'bg-highlight'
                                             : ''}"
