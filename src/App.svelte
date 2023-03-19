@@ -123,7 +123,7 @@
                 <div class="h-3 w-3 rounded-full bg-[#61c554]" />
             </div>
             <h2 class="text-white text-xs text-center w-full">
-                about.md - Principle@dev
+                about.md — Principle@dev
             </h2>
         </div>
         <div class="grow flex">
@@ -225,14 +225,14 @@
                     style="aspect-ratio: {aspectRatio}"
                     id="content"
                 >
-                    <Landing />
+                    <svelte:component this={currentDir.component} />
                 </div>
             </div>
         </div>
         <footer
             class="border-t-2 border-border_main w-full flex items-center max-h-min"
         >
-            <span class="text-purple opacity-50 text-sm">footer</span>
+            <span class="text-purple opacity-60 text-sm">footer</span>
         </footer>
     </div>
 </main>

@@ -1,5 +1,6 @@
 <script lang="ts">
     import WavingHand from "$assets/WavingHand.svelte";
+    import GoMarkGithub from "svelte-icons/go/GoMarkGithub.svelte";
 </script>
 
 <div class="m-auto">
@@ -21,9 +22,14 @@
             href="https://github.com/principle105"
             target="_blank"
             rel="noreferrer"
-            class="text-main rounded-lg text-sm px-8 py-3 bg-purple font-medium hover:brightness-[85%] transition"
+            class="text-main rounded-lg text-sm px-7 py-3 bg-purple font-medium hover:brightness-[85%] transition inline-block"
         >
-            Github
+            <div class="flex gap-1.5 items-center">
+                <div class="h-[1.1rem]">
+                    <GoMarkGithub />
+                </div>
+                <div>Github</div>
+            </div>
         </a>
     </div>
 </div>
