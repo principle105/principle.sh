@@ -3,15 +3,15 @@
     import GoMarkGithub from "svelte-icons/go/GoMarkGithub.svelte";
 </script>
 
-<div class="m-auto">
-    <div class="flex items-end gap-5">
-        <h1 class="text-white text-7xl font-bold">Hello!</h1>
-        <div class="h-20">
+<div class="m-auto px-10">
+    <div class="flex gap-5">
+        <h1 class="text-white text-7xl md:text-8xl font-bold">Hello!</h1>
+        <div class="h-16 md:h-24">
             <WavingHand />
         </div>
     </div>
     <div class="mt-4">
-        <div class="text-zinc-200">
+        <div class="text-zinc-200 text-lg">
             I'm a self-taught developer from
             <span class="text-red font-semibold">Canada</span>
             who likes building cool things.
@@ -22,7 +22,7 @@
             href="https://github.com/principle105"
             target="_blank"
             rel="noreferrer"
-            class="text-main rounded-lg text-sm px-7 py-3 bg-purple font-medium hover:brightness-[85%] transition inline-block"
+            class="text-main rounded-lg text-sm px-6 py-3 bg-purple font-medium hover:brightness-[85%] transition inline-block"
         >
             <div class="flex gap-1.5 items-center">
                 <div class="h-[1.1rem]">

@@ -1,9 +1,13 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
     import type { ComponentType } from "svelte/internal";
+
     import gsap from "gsap";
     import ScrollTrigger from "gsap/ScrollTrigger";
+
     import Landing from "$components/Landing.svelte";
+    import Projects from "$components/Projects.svelte";
+
     import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
     import FaAngleDown from "svelte-icons/fa/FaAngleDown.svelte";
     import FaTimes from "svelte-icons/fa/FaTimes.svelte";
@@ -36,7 +40,7 @@
             name: "projects",
             route: "#projects",
             icon: FaFolder,
-            component: Landing,
+            component: Projects,
             files: [
                 {
                     name: "wordpractice.py",
@@ -127,10 +131,10 @@
             </h2>
         </div>
         <div class="grow flex">
+            <div class="w-[3.15rem] border-r-2 border-border_main" />
             <div
-                class="w-[3.15rem] border-r-2 border-border_main hidden xl:block"
-            />
-            <div class="min-w-max border-r-2 border-border_main">
+                class="min-w-max border-r-2 border-border_main hidden xl:block"
+            >
                 <h4
                     class="w-full py-3 flex pl-6 uppercase text-xs text-zinc-300"
                 >
@@ -199,7 +203,7 @@
                             <div class="h-4 text-zinc-400">
                                 <svelte:component this={currentDir.icon} />
                             </div>
-                            <span class="text-vs text-cyan text-xs">
+                            <span class="text-vs text-cyan">
                                 {currentDir.name}
                             </span>
                         </div>
